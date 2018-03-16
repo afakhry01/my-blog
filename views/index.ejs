@@ -1,0 +1,19 @@
+<% include partials/header %>
+<% include partials/nav %>
+
+<div class="container main">
+    <div class="card-deck">
+      <% posts.forEach(function(post){ %>
+      <div class="card">
+        <img class="card-img-top" src="<%= post.image %>" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title"><%= post.title.toUpperCase() %></h5>
+          <p class="card-text"><%= post.description %></p>
+          <p class="card-text"><small class="text-muted">Posted on <%= post.date %></small></p>
+        </div>
+      </div>
+      <% }); %>
+    </div>
+</div>
+
+<% include partials/footer %>
