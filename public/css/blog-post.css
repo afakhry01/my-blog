@@ -9,8 +9,16 @@ body {
 }
 
 .main {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   margin-top: 70px;
-  min-height: calc(100vh - 0.5rem);
+  min-height: calc(100vh - 12rem);
+}
+
+.card {
+  width: 320px;
+  margin: 20px;
 }
 
 @media (min-width: 992px) {
