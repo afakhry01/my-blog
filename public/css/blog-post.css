@@ -4,16 +4,17 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-blog-post/blob/master/LICENSE)
  */
 
-body {
-  padding-top: 54px;
+.margins {
+  margin: 70px auto;
+  min-height: calc(100vh - 12rem);
 }
 
 .main {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-top: 70px;
-  min-height: calc(100vh - 12rem);
+  align-items: center;
+  justify-content: center;
 }
 
 .card {

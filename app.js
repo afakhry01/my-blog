@@ -2,11 +2,13 @@
 var express = require("express"),
     app = express(),
     bodyParser = require("body-parser"),
-    mongoose = require("mongoose");
+    mongoose = require("mongoose"),
+    methodOverride = require("method-override");
     
 app.set("view engine","ejs");
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
+app.use(methodOverride("_method"));
 
 mongoose.connect("mongodb://blogtest:blogtestpassword1@ds143717.mlab.com:43717/blog");
 var postSchema = new mongoose.Schema({
@@ -84,8 +86,40 @@ app.get("/blog/:id", function(req,res){
             console.log(error);
         } else {
             res.render("showPost", { post : post });
-            console.log(post.title);
         }
+    });
+});
+
+// Edit a post
+app.get("/blog/:id/edit", function(req,res){
+    Post.findById(req.params.id, function(error,post) {
+        if (error) {
+            res.redirect("/blog/"+req.params.id);
+        } else {
+            res.render("editPost",{post:post});
+        }
+    });
+});
+
+// Update a post
+app.put("/blog/:id", function(req,res) {
+    Post.findByIdAndUpdate(req.params.id,req.body.blog, function(error,post){
+        if (error) {
+            res.redirect("/blog/"+req.params.id);
+        } else {
+            res.redirect("/blog/"+req.params.id);
+        }
+    });
+});
+
+// Delete a Post
+app.delete("/blog/:id", function(req,res){
+    Post.findByIdAndRemove(req.params.id, function(error,post){
+        if (error) {
+            res.redirect("/blog");
+        } else {
+            res.redirect("/blog");
+        }        
     });
 });
 

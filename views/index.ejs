@@ -1,17 +1,16 @@
 <% include partials/header %>
 <% include partials/nav %>
 
-<div class="container main">
+<div class="container main margins">
     <!--<div class="card-deck">-->
       <% posts.forEach(function(post){ %>
       <div class="card">
         <img class="card-img-top" src="<%= post.image %>" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title"><%= post.title.toUpperCase() %></h5>
-          <% if (post.description.length > 150) { var description = post.description.substring(0,150) } else { description = post.description } %>
-          <p class="card-text"><%=  description %></p>
+          <p class="card-text"><%= post.description.substring(0,150)+" ..." %></p>
           <a href="/blog/<%= post._id%>" class="btn btn-primary">Read More</a>
-          <p class="card-text"><small class="text-muted">Posted on <%= post.date %></small></p>
+          <p class="card-text"><small class="text-muted">Posted on <%= post.date.toDateString() %></small></p>
         </div>
       </div>
       <% }); %>
